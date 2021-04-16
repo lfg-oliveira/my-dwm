@@ -187,7 +187,7 @@ static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
 static void propertynotify(XEvent *e);
-static void quit(const Arg *arg);
+//static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
 static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizeclient(Client *c, int x, int y, int w, int h);
@@ -1246,11 +1246,11 @@ propertynotify(XEvent *e)
 	}
 }
 
-void
-quit(const Arg *arg)
-{
-	running = 0;
-}
+// void
+// quit(const Arg *arg)
+// {
+// 	running = 0;
+// }
 
 Monitor *
 recttomon(int x, int y, int w, int h)
@@ -2146,6 +2146,10 @@ main(int argc, char *argv[])
 #endif /* __OpenBSD__ */
 	scan();
 	run();
+	if(fork()==0)
+	{
+		startup();
+	}
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
