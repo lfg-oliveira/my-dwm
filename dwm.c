@@ -1544,45 +1544,7 @@ setgaps(const Arg *arg)
 	arrange(selmon);
 }
 
-void
-setgaps(const Arg *arg)
-{
-	switch(arg->i)
-	{
-		case GAP_TOGGLE:
-			selmon->drawwithgaps = !selmon->drawwithgaps;
-			break;
-		case GAP_RESET:
-			selmon->gappx = gappx;
-			break;
-		default:
-			if (selmon->gappx + arg->i < 0)
-				selmon->gappx = 0;
-			else
-				selmon->gappx += arg->i;
-	}
-	arrange(selmon);
-}
 
-void
-setgaps(const Arg *arg)
-{
-	switch(arg->i)
-	{
-		case GAP_TOGGLE:
-			selmon->drawwithgaps = !selmon->drawwithgaps;
-			break;
-		case GAP_RESET:
-			selmon->gappx = gappx;
-			break;
-		default:
-			if (selmon->gappx + arg->i < 0)
-				selmon->gappx = 0;
-			else
-				selmon->gappx += arg->i;
-	}
-	arrange(selmon);
-}
 
 void
 setlayout(const Arg *arg)
@@ -2250,11 +2212,11 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
-	run();
 	if(fork()==0)
 	{
 		startup();
 	}
+	run();
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
