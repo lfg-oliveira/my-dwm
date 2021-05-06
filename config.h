@@ -85,7 +85,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_p, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,     XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -140,9 +140,11 @@ static Button buttons[] = {
 void 
 startup() {
 	char* const startupscript[] = {"/home/luizfgdo/bin/startup", NULL};
-	if(execvp("/home/luizfgdo/bin/startup",startupscript) == -1) 
-	{
-		fprintf(stderr, "couldnt execute command %s", startupscript[0]);
+	if(fork()==0){
+		if(execvp("/home/luizfgdo/bin/startup",startupscript) == -1) 
+		{
+			fprintf(stderr, "couldnt execute command %s", startupscript[0]);
+		}
 	}
 }
 

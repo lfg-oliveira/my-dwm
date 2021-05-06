@@ -2207,15 +2207,12 @@ main(int argc, char *argv[])
 		die("dwm: cannot open display");
 	checkotherwm();
 	setup();
+	startup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
-	if(fork()!=0)
-	{
-		startup();
-	}
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
