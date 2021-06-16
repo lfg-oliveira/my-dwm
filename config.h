@@ -73,7 +73,7 @@ static const char *quit[] = {"killall", "Xorg",  NULL};
 static const char *firefox[] = {"firefox",  NULL};
 static const char *monbridown[] = {"light", "-U", "5", NULL};
 static const char *monbriup[] = {"light", "-A", "5", NULL};
-static const char *voldown[] = {"pactl", "set-sink", "master"};
+//static const char *voldown[] = {"pactl", "set-sink", "master"};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
