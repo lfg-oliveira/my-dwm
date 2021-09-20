@@ -31,6 +31,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,     NULL,        1 << 4,        1,	        -1 },
 	{ "code",	  NULL,		NULL,	     1 << 0,		0,			-1 },
+	{ "Chromium",  NULL,     NULL,        1 << 1,        0,          -1 },
 	{ "firefox",  NULL,     NULL,        1 << 1,        0,          -1 },
 	{ "discord",  NULL,		NULL, 		 1 << 3, 	    0,			-1 },
 	{ "Spotify",  NULL,		NULL,		 1 << 6,		0,			-1 },
@@ -67,8 +68,9 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_orange, "-sf", col_gray4, NULL };
+// static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+// static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray3, "-nf", col_gray1, "-sb", col_orange, "-sf", col_gray4, NULL };
+static const char *rofidmenu[] = { "rofi","-modi","drun,ssh,run,window" ,"-show","drun", "-theme", "~/.config/rofi/themes/dmenu.rasi" };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *quit[] = {"killall", "Xorg",  NULL};
 static const char *firefox[] = {"firefox",  NULL};
@@ -80,7 +82,7 @@ static const char *printscr[] = {"flameshot", "gui"};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = rofidmenu } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -88,7 +90,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_p, zoom,           {0} },
+	{ MODKEY,                       XK_z, 		zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,     XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
